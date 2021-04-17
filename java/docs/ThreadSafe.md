@@ -169,6 +169,8 @@ class Dome2 implements Runnable{
 
 1. synchronized 是在JVM层面实现的，因此系统可以监控锁的释放与否
 2. ReentrantLock 是使用代码实现，系统无法自动释放锁，需要在代码中的finally子句中显示释放锁lock.unlock();。
+3. 在并发两比较小的情况下，建议使用synchronized ；如果并发量比较大高的情况下，性能往往没有ReentrantLock 好，此时使用ReentrantLock 是不错的方案
+4. 使用synchronized 代码块时,可以与wait()、notify()、nitifyAll()一起使用，从而进一步实现线程的通信,需要注意的是，wait()和notify()必须在synchronized代码块中调用。
 
 
 
